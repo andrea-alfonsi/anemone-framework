@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anemone Studio (Debug Server)</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='signature.css') }}">
+  <style>
+    select {
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #4CAF50;
+      border-radius: 5px;
+      background-color: white;
+      color: #333;
+      cursor: pointer;
+      text-transform: capitalize;
+    }
+
+    select:hover {
+      border-color: #45a049;
+    }
+
+    a:empty::before {
+      content: "More...";
+      color: #45a049;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body style="width: 90%; margin: 0 auto;">
+  <h1>Anemone Studio (Debug Server)</h1>
+
+  <div>
+    <h2>Models</h2>
+    <select id="modelSelect">
+      {% for id, model in models.items() %}
+      <option value="{{ id }}">{{ model.id }}</option>
+      {% endfor %}
+    </select>
+    <div>
+      <h3>Signature</h3>
+      <div style="display: flex; flex-direction: row; align-items: flex-start; gap: 10px; width: 100%;">
+        <div id="modelSignatureForm"
+          style="flex: 1; max-width: 50%; padding: 20px; background-color: whitesmoke; border: 1px solid #ccc;"></div>
+        <div id="modelSignatureText"
+          style="flex: 1; max-width: 50%; padding: 20px; background-color: whitesmoke; border: 1px solid #ccc; white-space: pre-wrap;">
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+
+    window.addEventListener('load', () => {
+
+      function loadSignatureModel(id) {
+        getSignature("model", id).then(s => {
+          signatureToForm(document.querySelector('#modelSignatureForm'), s);
+          signatureToText(document.querySelector('#modelSignatureText'), s)
+        })
+      }
+
+      const modelSelect = document.getElementById("modelSelect")
+      modelSelect.addEventListener('change', () => loadSignatureModel(modelSelect.value))
+      loadSignatureModel(modelSelect.value)
+    })
+  </script>
+
+
+  <div>
+    <h2>Datasets</h2>
+    <select id="datasetSelect">
+      {% for id, dataset in datasets.items() %}
+      <option value="{{ id }}">{{ dataset.id }}</option>
+      {% endfor %}
+    </select>
+    <div>
+      <h3>Signature</h3>
+      <div style="display: flex; flex-direction: row; align-items: flex-start; gap: 10px; width: 100%;">
+        <!-- <div id="datasetDataPreview"
+          style="flex: 1; max-width: 50%; padding: 20px; background-color: whitesmoke; border: 1px solid #ccc;"></div> -->
+        <div id="datasetSignatureText"
+          style="flex: 1; max-width: 100%; padding: 20px; background-color: whitesmoke; border: 1px solid #ccc; white-space: pre-wrap;">
+        </div>
+      </div>
+    </div>
+    <a id="datasetMoreLink"></a>
+  </div>
+
+
+  <script>
+
+    window.addEventListener('load', () => {
+
+      function loadSignatureDataset(id) {
+        getSignature("dataset", id).then(s => {
+          signatureToText(document.querySelector('#datasetSignatureText'), s)
+        })
+      }
+
+      function setMoreLink(moreElement, datasetId) {
+        moreElement.href = "/dataset/" + datasetId;
+      }
+
+      const datasetSelect = document.getElementById("datasetSelect")
+      const datasetMoreLink = document.getElementById("datasetMoreLink");
+
+      datasetSelect.addEventListener('change', () => {
+        loadSignatureDataset(datasetSelect.value)
+        setMoreLink(datasetSelect.value)
+      })
+
+
+      loadSignatureDataset(datasetSelect.value)
+      setMoreLink(datasetMoreLink, datasetSelect.value)
+
+    })
+  </script>
+
+
+  <div>
+    <h2>Interpreters</h2>
+    <select id="interpreterSelect">
+      {% for option in interpreters %}
+      <option value="{{ option.id }}">{{ option.id }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+
+
+  <script src="{{url_for('static', filename='signature.js') }}"></script>
+</body>
+
+</html>
