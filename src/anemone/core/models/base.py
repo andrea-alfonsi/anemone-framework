@@ -1,5 +1,10 @@
-from abc import ABC, abstractmethod
-from pathlib import Path
+"""
+This module defines the `BaseModel` class, which serves as an abstract foundation for
+machine learning models. It provides core attributes and methods to ensure consistency
+and extensibility across derived models.
+"""
+
+from abc import ABC
 from anemone.core.models.model_signature import ModelSignature
 from anemone.core.models.model_metadata import ModelMetadata
 from anemone.core.models.mixin.trainable import TrainableMixin
@@ -7,11 +12,8 @@ from anemone.core.models.mixin.trainable import TrainableMixin
 
 class BaseModel(ABC):
     """
-    A base class for models that provides common functionality
-    and serves as a foundation for derived classes.
-
-    This class can be extended by other classes to inherit shared
-    attributes and methods.
+    An abstract base class for machine learning models, providing common functionality
+    and ensuring consistent structure across implementations.
     """
 
     _id: str
@@ -24,16 +26,28 @@ class BaseModel(ABC):
 
     @property
     def signature(self) -> ModelSignature:
+        """
+        Returns the model's input-output signature.
+        """
         return self._signature
 
     @property
     def name(self):
+        """
+        Returns the model's name ( human-readable )
+        """
         return self._name
 
     @property
     def is_trainable(self) -> bool:
+        """
+        Indicates whether the model supports training
+        """
         return isinstance(self, TrainableMixin)
 
     @property
     def metadata(self) -> ModelMetadata:
+        """
+        Returns model metadata
+        """
         return ModelMetadata(name=self._name, trainable=self.is_trainable)
