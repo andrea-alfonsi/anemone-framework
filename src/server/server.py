@@ -3,7 +3,7 @@ from flask import Flask, g, render_template
 from typing import Optional
 import logging
 from core.models.base import BaseModel, ModelSignature
-from core.datasets.pandas_dataset import PandasDataset
+
 from core.datasets.dataset_signature import DatasetSignature
 from pandas import DataFrame
 from signatureflow import Scalar, String, serialize
@@ -32,13 +32,9 @@ example_model1 = BaseModel(
 example_model2 = BaseModel(
     "My Model 2", ModelSignature(input={"age": Scalar(), "score": Scalar()}, output={"y": Scalar()})
 )
-example_dataset = PandasDataset(
-    "My Dataset",
-    DatasetSignature(signature={"age": Scalar(), "score": Scalar()}),
-    dataframe=DataFrame({"age": list(range(0, 10, 2)), "score": list(range(0, 100, 20))}),
-)
+
 MODELS = {"0": example_model1, "1": example_model2}
-DATASETS = {"0": example_dataset}
+DATASETS = {}
 
 
 @app.route("/")
@@ -58,7 +54,7 @@ def info(component: str, id: Optional[str] = None):
             return serialize(model.signature.input)
         return {"error": "Cannot find the requested model"}
     if component == "dataset":
-        return serialize(example_dataset.signature.signature)
+        pass
     return {"models": args.model, "datasets": args.dataset, "id": id}
 
 

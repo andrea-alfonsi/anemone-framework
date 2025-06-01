@@ -17,9 +17,9 @@ class BaseModel(ABC):
     _id: str
     _signature: ModelSignature
 
-    def __init__(self, id: str, signature: ModelSignature):
+    def __init__(self, name: str, signature: ModelSignature):
         super().__init__()
-        self._id = id
+        self._name = name
         self._signature = signature
 
     @property
@@ -27,8 +27,8 @@ class BaseModel(ABC):
         return self._signature
 
     @property
-    def id(self):
-        return self._id
+    def name(self):
+        return self._name
 
     @property
     def is_trainable(self) -> bool:
@@ -36,4 +36,4 @@ class BaseModel(ABC):
 
     @property
     def metadata(self) -> ModelMetadata:
-        return ModelMetadata(id=self._id, trainable=self.is_trainable)
+        return ModelMetadata(name=self._name, trainable=self.is_trainable)
