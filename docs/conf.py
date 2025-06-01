@@ -18,12 +18,12 @@ sys.path.insert(0, os.path.abspath("../src/"))
 
 # -- Project information -----------------------------------------------------
 
-project = "ai-python docs"
-copyright = "2022, Daniel Ciborowski"
+project = "anemone docs"
+copyright = "2025, Andrea Alfonsi"
 author = "Daniel Ciborowski"
 
 # The full version, including alpha/beta/rc tags
-release = "0.1.0"
+release = "0.1a1"
 
 
 # -- General configuration ---------------------------------------------------

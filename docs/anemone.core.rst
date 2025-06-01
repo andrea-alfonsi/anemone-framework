@@ -1,13 +1,13 @@
-python\_package.hello\_world package
+anemone.core package
 ====================================
 
 Submodules
 ----------
 
-python\_package.hello\_world.hello\_world module
+anemone.core.datasets module
 ------------------------------------------------
 
-.. automodule:: python_package.hello_world.hello_world
+.. automodule:: anemone.core.datasets
    :members:
    :undoc-members:
    :show-inheritance:
@@ -15,7 +15,7 @@ python\_package.hello\_world.hello\_world module
 Module contents
 ---------------
 
-.. automodule:: python_package.hello_world
+.. automodule:: anemone.core
    :members:
    :undoc-members:
    :show-inheritance:

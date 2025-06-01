@@ -1,4 +1,4 @@
-python\_package package
+anemone package
 =======================
 
 Subpackages
@@ -7,15 +7,15 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   python_package.hello_world
+   anemone.core
 
 Submodules
 ----------
 
-python\_package.setup module
+anemone.setup module
 ----------------------------
 
-.. automodule:: python_package.setup
+.. automodule:: anemone.setup
    :members:
    :undoc-members:
    :show-inheritance:
@@ -23,7 +23,7 @@ python\_package.setup module
 Module contents
 ---------------
 
-.. automodule:: python_package
+.. automodule:: anemone
    :members:
    :undoc-members:
    :show-inheritance:
