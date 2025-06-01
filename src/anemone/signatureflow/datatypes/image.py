@@ -1,4 +1,4 @@
-from signatureflow.datatypes.tensor import Tensor
+from anemone.signatureflow.datatypes.tensor import Tensor
 from attrs import frozen, field
 from enum import Enum
 from base64 import b64decode

@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import Sequence, Any, Dict
-from core.interpreters.interpreter_signature import InterpreterSignature
-from core.models.base import BaseModel
-from core.datasets.base import BaseDataset
+from anemone.core.interpreters.interpreter_signature import InterpreterSignature
+from anemone.core.models.base import BaseModel
+from anemone.core.datasets.base import BaseDataset
 
 
 class BaseInterpreter(ABC):

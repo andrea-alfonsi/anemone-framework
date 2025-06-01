@@ -1,5 +1,5 @@
-from core.models.model_signature import ModelSignature
-from core.models.base import BaseModel
+from anemone.core.models.model_signature import ModelSignature
+from anemone.core.models.base import BaseModel
 import torch
 
 

@@ -1,5 +1,5 @@
 from attrs import frozen, field
-from signatureflow import Signature
+from anemone.signatureflow import Signature
 
 
 @frozen

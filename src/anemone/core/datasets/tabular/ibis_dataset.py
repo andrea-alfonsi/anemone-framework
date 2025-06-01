@@ -1,4 +1,4 @@
-from core.datasets.base import BaseDataset
+from anemone.core.datasets.base import BaseDataset
 from typing import Any
 import ibis
 

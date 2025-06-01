@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from pathlib import Path
-from core.models.model_signature import ModelSignature
-from core.models.model_metadata import ModelMetadata
-from core.models.mixin.trainable import TrainableMixin
+from anemone.core.models.model_signature import ModelSignature
+from anemone.core.models.model_metadata import ModelMetadata
+from anemone.core.models.mixin.trainable import TrainableMixin
 
 
 class BaseModel(ABC):

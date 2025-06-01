@@ -1,4 +1,4 @@
-from signatureflow.datatypes.image import Image
+from anemone.signatureflow.datatypes.image import Image
 import pytest
 
 

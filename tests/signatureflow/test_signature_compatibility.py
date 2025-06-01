@@ -1,5 +1,5 @@
-from signatureflow import transpose
-from signatureflow.datatypes import Scalar, String, Tensor
+from anemone.signatureflow import transpose
+from anemone.signatureflow.datatypes import Scalar, String, Tensor
 import pytest
 
 

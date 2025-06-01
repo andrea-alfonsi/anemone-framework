@@ -1,5 +1,5 @@
-from signatureflow import validate_data, serialize
-from signatureflow.datatypes import Scalar, String, Tensor
+from anemone.signatureflow import validate_data, serialize
+from anemone.signatureflow.datatypes import Scalar, String, Tensor
 
 
 def test_scalar():

@@ -1,8 +1,8 @@
-from core.datasets import append
-from core.datasets.tabular.pandas_dataset import PandasDataset
-from core.datasets.dataset_signature import DatasetSignature
-from signatureflow import Scalar, String
 import pytest
+from anemone.core.datasets import append
+from anemone.core.datasets.tabular.pandas_dataset import PandasDataset
+from anemone.core.datasets.dataset_signature import DatasetSignature
+from anemone.signatureflow.datatypes import Scalar, String
 
 @pytest.fixture
 def iris_dataset_csv1():

@@ -1,5 +1,5 @@
-from core.datasets.base import BaseDataset
-from signatureflow import transpose
+from anemone.core.datasets.base import BaseDataset
+from anemone.signatureflow import transpose
 import numpy as np
 
 def append( dataset: BaseDataset, *datasets: BaseDataset, name = "AppendDataset" ) -> BaseDataset :

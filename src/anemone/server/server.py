@@ -2,11 +2,8 @@ import argparse
 from flask import Flask, g, render_template
 from typing import Optional
 import logging
-from core.models.base import BaseModel, ModelSignature
-
-from core.datasets.dataset_signature import DatasetSignature
-from pandas import DataFrame
-from signatureflow import Scalar, String, serialize
+from anemone.core.models.base import BaseModel, ModelSignature
+from anemone.signatureflow import Scalar, String, serialize
 
 app = Flask(__name__)
 logging.basicConfig(level=logging.DEBUG)

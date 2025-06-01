@@ -1,5 +1,5 @@
-from core.datasets.tabular.pandas_dataset import PandasDataset
-from core.datasets.dataset_signature import DatasetSignature
+from anemone.core.datasets.tabular.pandas_dataset import PandasDataset
+from anemone.core.datasets.dataset_signature import DatasetSignature
 import pytest
 
 @pytest.fixture

@@ -1,8 +1,8 @@
 import pytest
 import torch
-from core.models.torch_model import TorchModel, BaseModel, ModelSignature
-from core.models.mixin.trainable import TrainableMixin
-from signatureflow.datatypes.tensor import Tensor
+from anemone.core.models.torch_model import TorchModel, BaseModel, ModelSignature
+from anemone.core.models.mixin.trainable import TrainableMixin
+from anemone.signatureflow.datatypes.tensor import Tensor
 
 
 @pytest.fixture

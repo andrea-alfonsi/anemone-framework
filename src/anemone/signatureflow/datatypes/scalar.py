@@ -1,4 +1,4 @@
-from signatureflow.datatypes.base import BaseDataType
+from anemone.signatureflow.datatypes.base import BaseDataType
 from typing import Union, Optional
 from attrs import frozen, field
 

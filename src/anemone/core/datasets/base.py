@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
-from core.datasets.dataset_signature import DatasetSignature
-from core.datasets.dataset_metadata import DatasetMetadata
+from anemone.core.datasets.dataset_signature import DatasetSignature
+from anemone.core.datasets.dataset_metadata import DatasetMetadata
 from typing import Any, Dict, Sequence, Union
 from numpy import ndarray
 
