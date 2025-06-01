@@ -37,7 +37,7 @@
     <h2>Models</h2>
     <select id="modelSelect">
       {% for id, model in models.items() %}
-      <option value="{{ id }}">{{ model.id }}</option>
+      <option value="{{ id }}">{{ model.name }}</option>
       {% endfor %}
     </select>
     <div>
@@ -73,7 +73,7 @@
     <h2>Datasets</h2>
     <select id="datasetSelect">
       {% for id, dataset in datasets.items() %}
-      <option value="{{ id }}">{{ dataset.id }}</option>
+      <option value="{{ id }}">{{ dataset.name }}</option>
       {% endfor %}
     </select>
     <div>
@@ -118,16 +118,6 @@
 
     })
   </script>
-
-
-  <div>
-    <h2>Interpreters</h2>
-    <select id="interpreterSelect">
-      {% for option in interpreters %}
-      <option value="{{ option.id }}">{{ option.id }}</option>
-      {% endfor %}
-    </select>
-  </div>
 
 
 
