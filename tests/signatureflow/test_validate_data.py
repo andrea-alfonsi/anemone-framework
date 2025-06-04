@@ -1,8 +1,9 @@
 from anemone.signatureflow import validate_data
 from anemone.signatureflow.datatypes import Scalar, String
-from typing import Optional
+import pytest
 
 
+@pytest.mark.integration
 def test_simple_json():
     signature = {"name": String(required=True), "age": Scalar(required=False)}
 
