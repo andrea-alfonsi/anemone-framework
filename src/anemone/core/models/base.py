@@ -39,7 +39,6 @@ class BaseModel(ABC):
         """
         return self._name
 
-    @property
     def is_trainable(self) -> bool:
         """
         Indicates whether the model supports training
@@ -51,7 +50,7 @@ class BaseModel(ABC):
         """
         Returns model metadata
         """
-        return ModelMetadata(name=self._name, trainable=self.is_trainable)
+        return ModelMetadata(name=self._name, trainable=self.is_trainable())
 
     @abstractmethod
     def predict(self, inputs: ndarray) -> ndarray:
