@@ -5,23 +5,9 @@ a dataset, and a selection of data points, and produces an output.
 """
 
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
-from typing import Any, Dict, Optional
-from numpy import ndarray
+from typing import Any, Dict
 from anemone.core.interpreters.interpreter_signature import InterpreterSignature
-from anemone.core.models.base import BaseModel
-from anemone.core.datasets.base import BaseDataset
-
-
-@dataclass
-class RunContext:
-    """
-    Encapsulate all the context relative to the current runtime
-    """
-
-    config: Dict[str, Any]
-    model: BaseModel
-    dataset: BaseDataset
+from anemone.core.interpreters.run_context import RunContext
 
 
 class BaseInterpreter(ABC):
@@ -44,7 +30,7 @@ class BaseInterpreter(ABC):
         return self._signature.config
 
     @abstractmethod
-    def run(self, context: RunContext, selection: str, raw: ndarray) -> Dict[str, Any]:
+    def run(self, config: Dict[str, Any], context: RunContext) -> Dict[str, Any]:
         """
         Abstract method to execute the interpreter using the provided models, dataset,
         and selection criteria.

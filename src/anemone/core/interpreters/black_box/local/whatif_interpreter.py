@@ -12,5 +12,5 @@ class WhatifInterpreter(BaseInterpreter):
     Whatif interpreter. It simply run the model with the raw data provided
     """
 
-    def run(self, context, selection, raw):
-        return {"prediction": context.model.predict(raw)}
+    def run(self, config, context):
+        return {"prediction": context.model.predict(context.raw)}

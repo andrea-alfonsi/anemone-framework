@@ -40,6 +40,6 @@ class SimpleModel(nn.Module):
 dataset = PandasDataset("My dataset", DatasetSignature(signature={}), pd.DataFrame({}))
 model = TorchModel("My model", SimpleModel(1), ModelSignature(output={"value": Scalar()}, input={"value": Scalar()}))
 interpreter = WhatifInterpreter("whatif interpreter", InterpreterSignature(config={}, output={}))
-prediction = interpreter.run(RunContext(model=model, config={}, dataset=dataset), "", np.array([1]))
+prediction = interpreter.run({}, RunContext(model=model, dataset=dataset, selection=None, raw=np.array([1])))
 
 print(prediction)

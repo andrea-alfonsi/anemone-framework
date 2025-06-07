@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
-from anemone.core.datasets.dataset_signature import DatasetSignature
-from anemone.core.datasets.dataset_metadata import DatasetMetadata
 from typing import Any, Dict, Sequence, Union
 from numpy import ndarray
+from anemone.core.datasets.dataset_signature import DatasetSignature
+from anemone.core.datasets.dataset_metadata import DatasetMetadata
 
 
 class BaseDataset(ABC):
@@ -51,15 +51,16 @@ class BaseDataset(ABC):
         """
         This method is used only to make simpler to interact with the underlying dataset structure
         and to make the package compatible with other libraries, but this should never be used in anemones's code.
-        If you need to get some data from a dataset use the `select` methods, which returns always a ndarray (aka numpy's array)
+        If you need to get some data from a dataset use the `select` methods,
+        which returns always a ndarray (aka numpy's array)
         """
-        pass
 
     @abstractmethod
     def select(self, query: Dict[str, Union[str, Sequence[str]]]) -> ndarray:
         """
-        Use a select object to retrieve data from a dataset. The object can have 3 keys: "select", "conditions" and "order".
-        Each subclass must implement this methods in order to comunicate with the underling technology and respond with the right data.
-        The result should be a ndarray, where the first number of shape is the number of instances, and the other are the shape of the dataset.
+        Use a select object to retrieve data from a dataset.
+        The object can have 3 keys: "select", "conditions" and "order".
+        Each subclass must implement this methods in order to comunicate with the underling technology.
+        The result should be a ndarray, where the first number of shape is the number of instances,
+        and the other are the shape of the dataset.
         """
-        pass
