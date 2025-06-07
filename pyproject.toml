@@ -27,7 +27,8 @@ dependencies = [
     "ibis-framework==10.5.0",
     "numpy>1.26,<2.3.0",
     "pandas==2.3.0",
-    "attrs==25.3.0"
+    "attrs==25.3.0",
+    "onnx==1.18.0"
 ]
 
 [project.optional-dependencies]

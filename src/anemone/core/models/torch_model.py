@@ -21,7 +21,7 @@ class TorchModel(BaseModel):
 
     _model: torch.nn.Module
 
-    def __init__(self, name, model: torch.nn.Module, signature: ModelSignature):
+    def __init__(self, name: str, model: torch.nn.Module, signature: ModelSignature):
         super().__init__(name, signature)
         self._model = model
 
@@ -30,3 +30,7 @@ class TorchModel(BaseModel):
         Train the model
         """
         raise NotImplementedError("This method has not been implemented yet")
+
+    def predict(self, inputs):
+        input_tensor = torch.tensor(inputs)
+        return self._model(input_tensor)

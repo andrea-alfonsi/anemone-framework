@@ -4,7 +4,8 @@ machine learning models. It provides core attributes and methods to ensure consi
 and extensibility across derived models.
 """
 
-from abc import ABC
+from abc import ABC, abstractmethod
+from numpy import ndarray
 from anemone.core.models.model_signature import ModelSignature
 from anemone.core.models.model_metadata import ModelMetadata
 from anemone.core.models.mixin.trainable import TrainableMixin
@@ -51,3 +52,10 @@ class BaseModel(ABC):
         Returns model metadata
         """
         return ModelMetadata(name=self._name, trainable=self.is_trainable)
+
+    @abstractmethod
+    def predict(self, inputs: ndarray) -> ndarray:
+        """
+        Simply run the model without other requirements.
+        It should return a numpy array that complies with the model's output signature
+        """
