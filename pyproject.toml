@@ -26,7 +26,7 @@ dependencies = [
     "pillow==11.2.1",
     "ibis-framework==10.5.0",
     "numpy>1.26,<2.3.0",
-    "pandas==2.2.3",
+    "pandas==2.3.0",
     "attrs==25.3.0"
 ]
 
