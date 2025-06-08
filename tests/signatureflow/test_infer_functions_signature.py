@@ -1,5 +1,6 @@
 from anemone.signatureflow import infer_signature
-from anemone.signatureflow.datatypes import Scalar, String
+from anemone.signatureflow.datatypes.scalar import Scalar
+from anemone.signatureflow.datatypes.string import String
 from typing import Optional
 import pytest
 

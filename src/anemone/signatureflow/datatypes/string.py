@@ -1,5 +1,5 @@
-from anemone.signatureflow.datatypes.base import BaseDataType
 from attrs import frozen, field
+from anemone.signatureflow.datatypes.base import BaseDataType
 
 
 @frozen

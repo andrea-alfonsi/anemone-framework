@@ -5,7 +5,7 @@ Thisinterpreter accpets a dataset and plots all the values into a scatter plot
 import logging
 import numpy as np
 from anemone.core.interpreters.base import BaseInterpreter, InterpreterSignature
-from anemone.signatureflow.datatypes.string import String
+from anemone.signatureflow.datatypes.label import Label
 from anemone.signatureflow.datatypes.tensor import Tensor
 
 
@@ -18,7 +18,8 @@ class DataVisualizer(BaseInterpreter):
         super().__init__(
             name,
             InterpreterSignature(
-                config={"dimensionalityReduction": String(default="pca")}, output={"points": Tensor(shape=(-1, 2))}
+                config={"dimensionalityReduction": Label(default="pca", vocab=["pca"])},
+                output={"points": Tensor(shape=(-1, 2))},
             ),
         )
 

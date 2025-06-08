@@ -1,5 +1,6 @@
 from anemone.signatureflow import transpose
-from anemone.signatureflow.datatypes import Scalar, String, Tensor
+from anemone.signatureflow.datatypes.scalar import Scalar
+from anemone.signatureflow.datatypes.string import String
 import pytest
 
 
@@ -30,5 +31,5 @@ def test_simple_map():
 def test_not_compatible():
     ssignature = {"data": Scalar()}
     tsignature = {"data": String()}
-    with pytest.raises(ValueError) as e:
+    with pytest.raises(ValueError) as _:
         transpose(ssignature, tsignature)
