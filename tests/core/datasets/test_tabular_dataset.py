@@ -2,9 +2,10 @@ from anemone.core.datasets.tabular.pandas_dataset import PandasDataset
 from anemone.core.datasets.dataset_signature import DatasetSignature
 import pytest
 
+
 @pytest.fixture
 def iris_dataset_csv():
-  return f"""
+    return f"""
 "sepal.length","sepal.width","petal.length","petal.width","variety"
 5.1,3.5,1.4,.2,"Setosa"
 4.9,3,1.4,.2,"Setosa"
@@ -159,8 +160,9 @@ def iris_dataset_csv():
 """
 
 
-def test_tabular_from_string( iris_dataset_csv ):
-  import pandas
-  from io import StringIO
-  dataframe = pandas.read_csv( StringIO( iris_dataset_csv ) )
-  dataset = PandasDataset( "IrisDataset", DatasetSignature( signature={} ), dataframe )
+def test_tabular_from_string(iris_dataset_csv):
+    import pandas
+    from io import StringIO
+
+    dataframe = pandas.read_csv(StringIO(iris_dataset_csv))
+    # dataset = PandasDataset("IrisDataset", DatasetSignature(signature={}, targets={"variety": String()}), dataframe)

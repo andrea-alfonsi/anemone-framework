@@ -1,30 +1,36 @@
-from typing import Dict, Optional, Union, Sequence
+from typing import Optional, Dict, Any
 from numpy import ndarray
 from anemone.core.models.base import BaseModel
 from anemone.core.datasets.base import BaseDataset
 
 
-class RunContext:
+SQLLikeSelectQuery = str
+
+
+class Context:
     """
     Encapsulate all the context relative to the current runtime
     """
 
-    _selection: Optional[Dict[str, Union[str, Sequence[str]]]]
+    _selection: Optional[SQLLikeSelectQuery]
     _raw: Optional[ndarray]
     _model: Optional[BaseModel]
     _dataset: Optional[BaseDataset]
+    _config: Optional[Dict[str, Any]]
 
     def __init__(
         self,
         model: Optional[BaseModel],
         dataset: Optional[BaseDataset],
-        selection: Optional[Dict[str, Union[str, Sequence[str]]]],
+        selection: Optional[SQLLikeSelectQuery],
         raw: Optional[ndarray],
+        config: Optional[Dict[str, Any]],
     ):
         self._selection = selection
         self._raw = raw
         self._model = model
         self._dataset = dataset
+        self._config = config
 
     @property
     def model(self) -> BaseModel:
@@ -39,7 +45,7 @@ class RunContext:
         return self._dataset
 
     @property
-    def selection(self) -> Dict[str, Union[str, Sequence[str]]]:
+    def selection(self) -> SQLLikeSelectQuery:
         if self._selection is None:
             raise ValueError("No selection  provided")
         return self._selection
@@ -49,3 +55,9 @@ class RunContext:
         if self._raw is None:
             raise ValueError("No raw provided")
         return self._raw
+
+    @property
+    def config(self) -> Dict[str, Any]:
+        if self._config is None:
+            return {}
+        return self._config

@@ -2,7 +2,9 @@ from typing import Callable, Union, get_args, get_origin, Type, Optional, Dict, 
 from collections.abc import Mapping
 from collections import defaultdict
 from inspect import Parameter, signature, Signature as inspectSignature
-from .datatypes import DataType, Scalar, String
+from .datatypes import DataType
+from .datatypes.scalar import Scalar
+from .datatypes.string import String
 
 Signature = Mapping[str, DataType]
 

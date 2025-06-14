@@ -33,4 +33,4 @@ class TorchModel(BaseModel):
 
     def predict(self, inputs):
         input_tensor = torch.tensor(inputs)
-        return self._model(input_tensor)
+        return self._model(input_tensor).detach().numpy()
