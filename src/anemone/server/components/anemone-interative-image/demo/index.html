@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <style>
+    body {
+      background: #fafafa;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="demo"></div>
+
+  <script type="module">
+    import { html, render } from 'lit';
+    import '../dist/src/anemone-interative-image.js';
+
+    function handleRegionChange(event) {
+      document.querySelector('#listenerOutput').setAttribute('src', event.detail.data);
+    }
+
+    render(
+      html`
+        <h1>Simple image display</h1>
+        <anemone-interative-image width="300" height="300" src="https://picsum.photos/300"></anemone-interative-image>
+        <h1>Rectanguar Region Selector</h1>
+        <anemone-interative-image width="300" height="300" src="https://picsum.photos/300" regionSelector ></anemone-interative-image>
+        <h1>Selection event listener</h1>
+        <div style="display: flex; align-items: center; gap: 24px">
+          <anemone-interative-image width="300" height="300" src="https://picsum.photos/300" regionSelector @selectedRegionChange="${handleRegionChange}"></anemone-interative-image>
+          <img id="listenerOutput"/>
+        </div>
+      `,
+      document.querySelector('#demo')
+    );
+  </script>
+</body>
+
+</html>
