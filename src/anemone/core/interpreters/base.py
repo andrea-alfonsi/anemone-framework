@@ -5,23 +5,9 @@ a dataset, and a selection of data points, and produces an output.
 """
 
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
-from typing import Any, Dict, Optional
-from numpy import ndarray
-from anemone.core.interpreters.interpreter_signature import InterpreterSignature
-from anemone.core.models.base import BaseModel
-from anemone.core.datasets.base import BaseDataset
-
-
-@dataclass
-class RunContext:
-    """
-    Encapsulate all the context relative to the current runtime
-    """
-
-    config: Dict[str, Any]
-    model: BaseModel
-    dataset: BaseDataset
+from anemone.core.interpreters.config import ConfigSignature
+from anemone.core.interpreters.context import Context
+from anemone.core.explaination.base import BaseExplaination
 
 
 class BaseInterpreter(ABC):
@@ -29,23 +15,26 @@ class BaseInterpreter(ABC):
     Abstract base class for interpreters, enforcing a `run` method
     """
 
-    _name: str
-    _signature: InterpreterSignature
-
-    def __init__(self, name: str, signature: InterpreterSignature):
-        self._name = name
-        self._signature = signature
+    def __init__(self, context: Context):
+        self._context = context
 
     @property
-    def config_signature(self):
+    def context(self) -> Context:
         """
-        Property method that returns the interpreter's configuration from its signature.
+        Get the context of the model
         """
-        return self._signature.config
+        return self._context
 
     @abstractmethod
-    def run(self, context: RunContext, selection: str, raw: ndarray) -> Dict[str, Any]:
+    def run(self) -> BaseExplaination:
         """
         Abstract method to execute the interpreter using the provided models, dataset,
         and selection criteria.
+        """
+
+    @staticmethod
+    @abstractmethod
+    def get_config_signature() -> ConfigSignature:
+        """
+        Returns the signaure for the config of the interpreter.
         """

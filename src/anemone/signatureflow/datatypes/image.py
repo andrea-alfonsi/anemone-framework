@@ -19,7 +19,7 @@ class Image(Tensor):
     format = field(default=ImageFormat.RGBA, kw_only=True)
 
     def validate(self, value):
-        if isinstance( value, str ):
+        if isinstance(value, str):
             data = b""
             if value.startswith("data:image/"):
                 value = value[11:]
@@ -31,4 +31,4 @@ class Image(Tensor):
             raw = np.array(image)
             if not raw.shape == self.shape:
                 raise ValueError(f"Invalid image data. Expected data with shape `{self.shape}`, got `{raw.shape}`")
-            super().validate( np.squeeze(raw) )
+            super().validate(np.squeeze(raw))

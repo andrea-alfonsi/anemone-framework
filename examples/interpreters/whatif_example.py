@@ -7,13 +7,12 @@ from torch import nn
 import pandas as pd
 import numpy as np
 from anemone.core.interpreters.black_box.local.whatif_interpreter import WhatifInterpreter
-from anemone.core.interpreters.base import RunContext
-from anemone.core.interpreters.interpreter_signature import InterpreterSignature
+from anemone.core.interpreters.context import Context
 from anemone.core.models.torch_model import TorchModel
 from anemone.core.models.model_signature import ModelSignature
 from anemone.core.datasets.tabular.pandas_dataset import PandasDataset
 from anemone.core.datasets.dataset_signature import DatasetSignature
-from anemone.signatureflow.datatypes import Scalar
+from anemone.signatureflow.datatypes.scalar import Scalar
 
 
 class SimpleModel(nn.Module):
@@ -37,9 +36,10 @@ class SimpleModel(nn.Module):
         return x
 
 
-dataset = PandasDataset("My dataset", DatasetSignature(signature={}), pd.DataFrame({}))
+dataset = PandasDataset("My dataset", DatasetSignature(targets={}, features={}), pd.DataFrame({}))
 model = TorchModel("My model", SimpleModel(1), ModelSignature(output={"value": Scalar()}, input={"value": Scalar()}))
-interpreter = WhatifInterpreter("whatif interpreter", InterpreterSignature(config={}, output={}))
-prediction = interpreter.run(RunContext(model=model, config={}, dataset=dataset), "", np.array([1]))
+context = Context(dataset=dataset, model=model, config=None, selection=None, raw=np.array([1]))
+interpreter = WhatifInterpreter(context)
+prediction = interpreter.run()
 
 print(prediction)

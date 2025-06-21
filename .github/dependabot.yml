@@ -5,6 +5,7 @@ updates:
   schedule:
     interval: daily
     time: "13:00"
+  target-branch: develoment
   open-pull-requests-limit: 10
   reviewers:
   - dciborow
@@ -18,5 +19,6 @@ updates:
   schedule:
     interval: daily
     time: "13:00"
+  target-branch: develoment
   commit-message:
     prefix: "fix: "
