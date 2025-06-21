@@ -1,8 +1,14 @@
-from abc import ABC, abstractmethod
-from typing import Sequence
+"""
+Define all the common methods for a model to be considered a llm
+"""
 
-Token = int
-Score = float
+from abc import ABC, abstractmethod
+from typing import Sequence, Optional
+from functools import lru_cache
+import numpy as np
+
+
+Tokens = np.ndarray
 
 
 class LLMModelMixin(ABC):
@@ -10,21 +16,37 @@ class LLMModelMixin(ABC):
     Idicates that a model a LLM
     """
 
-    @abstractmethod
-    def generate(self, prompt: str) -> Sequence[str]:
+    def cache_generate(self, prompt: str):
+        """
+        Run the genetate method with cache for better performance and reduced cost when possible
+        """
+        if self._cached_generate_function is None:
+            self._cached_generate_function = lru_cache()(self.generate)
+        return self._cached_generate_function(prompt)
+
+    def generate(self, prompt: str, output_number: int = 1) -> Sequence[str]:
         """
         takes a prompt and produces one or more responses
         """
+        outputs = []
+        for _ in range(output_number):
+            outputs.append(self.decode(self.generate_with_mask(self.encode(prompt), None)))
+        return outputs
 
     @abstractmethod
-    def tokenize(self, prompt: str) -> Sequence[Token]:
+    def generate_with_mask(self, tokens: Tokens, mask: Optional[Tokens] = None) -> Tokens:
+        """
+        Run the llm model to enerate an answer but with the ability to mask tokens
+        """
+
+    @abstractmethod
+    def encode(self, prompt: str) -> np.ndarray:
         """
         returns a list of tokens for a given text
         """
 
     @abstractmethod
-    def salience(self, prompt: str, output: Sequence[int], mask: Sequence[bool]) -> Sequence[Score]:
+    def decode(self, tokens: Tokens) -> str:
         """
-        takes a prompt, a target output sequence, and a target mask specifying which output token(s) to explain,
-        and returns scores for the preceding tokens
+        Convert the output back to a string
         """
