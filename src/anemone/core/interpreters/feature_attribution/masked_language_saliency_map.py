@@ -1,5 +1,6 @@
-from anemone.core.interpreters.base import BaseInterpreter
 from anemone.core.explaination.base import BaseExplaination
+from anemone.core.interpreters.base import BaseInterpreter
+from anemone.core.interpreters.config import ConfigSignature
 from anemone.core.models.mixin.masked_language_model import MaskedLanguageModelMixin
 
 
@@ -29,6 +30,13 @@ class MaskedLanguageSaliencyMap(BaseInterpreter):
             _max = val if val > _max else _max
             _min = val if val < _min else _min
         return (_min, _max)
+
+    @staticmethod
+    def get_config_signature() -> ConfigSignature:
+        """
+        This interpreter has no particular configuration
+        """
+        return ConfigSignature(config={})
 
     def run(self):
         """
