@@ -24,6 +24,9 @@ class MaskedLanguageSaliencyMap(BaseInterpreter):
 
     @staticmethod
     def find_min_and_max(result: dict):
+        """
+        Returns max and min from a list using a single cycle
+        """
         _max = float("-inf")
         _min = float("inf")
         for val in result.values():
@@ -49,12 +52,14 @@ class MaskedLanguageSaliencyMap(BaseInterpreter):
         mask = self.context.model.mask
         model = self.context.model
         baseline = model.fill_masks(message_to_explain, top_k=1)[0]["text"]
-        words = list(baseline.split(" "))
+        words = list(message_to_explain.split(" "))
         result = {}
         for i, word in enumerate(words):
+            if word == mask:
+                continue
             message = " ".join([w if n == i else mask for n, w in enumerate(words)])
             prediction = model.fill_masks(message, top_k=1)[0]["text"]
             result[(i, word)] = MaskedLanguageSaliencyMap.default_difference_measure(baseline, prediction)
         [_min, _max] = MaskedLanguageSaliencyMap.find_min_and_max(result)
-        result = {k: (v - _min) / (_max - _min) for k, v in result}
+        result = {k: (v - _min) / (_max - _min) for k, v in result.items()}
         return MaskedLanguageSaliecyMapExplaination(result, {})
