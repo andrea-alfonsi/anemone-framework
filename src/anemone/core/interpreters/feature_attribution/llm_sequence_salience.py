@@ -2,6 +2,8 @@
 Sequence Salience interpreter for blackbox LLMs
 """
 
+raise Exception("this must be replace with causal and masked language models...")
+
 import numpy as np
 from anemone.core.interpreters.base import BaseInterpreter
 from anemone.core.explaination.base import BaseExplaination
