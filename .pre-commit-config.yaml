@@ -58,3 +58,11 @@ repos:
     hooks:
       - id: check-manifest
         stages: [manual]
+
+  - repo: local
+    hooks:
+      - id: mkinit
+        name: Generate __init__.py files
+        entry: mkinit
+        language: system
+        files: '.*__init__\.py$'
