@@ -1,4 +1,5 @@
 from typing import Mapping
-from .datatypes import DataType
+from anemone.signatureflow.datatypes.base import BaseDataType as DataType
+
 
 Signature = Mapping[str, DataType]
