@@ -69,4 +69,4 @@ repos:
         args:
           - '--recursive'
           - '--write'
-
+        pass_filenames: true
