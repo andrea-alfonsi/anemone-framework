@@ -66,4 +66,5 @@ repos:
         entry: mkinit
         language: system
         files: '.*__init__\.py$'
-        pass_filenames: true
+        args:
+          -'--recursive'
