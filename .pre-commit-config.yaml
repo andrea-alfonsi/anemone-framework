@@ -67,4 +67,6 @@ repos:
         language: system
         files: '.*__init__\.py$'
         args:
-          -'--recursive'
+          - '--recursive'
+          - '--write'
+
