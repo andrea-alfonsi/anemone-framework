@@ -53,7 +53,10 @@ test = [
     "shellcheck-py==0.10.0.1",
 ]
 tensorflow = ["tensorflow>=2.16.1"]
-torch = ["torch>=2.7.0"]
+torch = [
+    "torch>=2.7.0",
+    "captum>=0.8.0"
+]
 
 [project.urls]
 Documentation = "https://github.com/microsoft/python-package-template/tree/main#readme"
